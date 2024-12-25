@@ -18,7 +18,19 @@ def find_all_subsets(paramArray):
     return subsets
 
 
-paramArray = [1, 2, 3]
+def find_all_subsets_without_math(paramArray):
+    subsets = [[]]  # Start with the empty set
+    for element in paramArray:
+        # For each element, create new subsets by adding the element to existing subsets
+        new_subset = [subset + [element] for subset in subsets]
+        subsets.extend(new_subset)  # Add the new subsets to the list of subsets
+
+    return subsets
+
+paramArray = [1, 2, 3,4, 4]
 
 subsets = find_all_subsets(paramArray)
+print(subsets)
+
+subsets = find_all_subsets_without_math(paramArray)
 print(subsets)
