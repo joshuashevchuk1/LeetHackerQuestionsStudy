@@ -1,4 +1,4 @@
-# TODO: find an efficient solution
+# TODO: find an efficient/more optimized solution
 
 def flip_by_90(grid):
     flipped = []
