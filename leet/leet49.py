@@ -16,7 +16,7 @@ class AnagramCalculator:
         """
         anagrams = defaultdict(list)
         for string in strs:
-            sorted_string = ''.join(sorted(string))
+            sorted_string = ''.join(sorted(string)) # O(k log(k))
             anagrams[sorted_string].append(string)
         return list(anagrams.values())
 
