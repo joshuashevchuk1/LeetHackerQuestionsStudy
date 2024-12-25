@@ -10,16 +10,35 @@ def flip_by_90(grid):
 
     print("flipped : " + str(flipped))
 
-grid =  [[1,2,3],[4,5,6],[7,8,9]]
-grid2 = [[1,2],[3,4],[5,6]]
+
+def flip_by_90_in_place(grid):
+    # Step 1: Transpose the matrix in place
+    n = len(grid)  # Assuming the grid is square (n x n)
+    for i in range(n):
+        for j in range(i + 1, n):  # Only swap the upper triangle
+            grid[i][j], grid[j][i] = grid[j][i], grid[i][j]
+
+    # Step 2: Reverse each row
+    for row in grid:
+        row.reverse()
+
+    print("flipped in place : " + str(grid))
+
+def flip_by_90_with_numpy(grid):
+    a = np.array(grid, dtype='int32')  # Convert the input grid to a numpy array
+    a = a.transpose()
+    a = a.tolist()
+    for row in a:
+        row.reverse()
+    return print("a : "  + str(a))
 
 # [1.2.3]            [7,4,1]
 # [4,5,6] --> 90 --> [8,5,2]
 # [7,8,9]            [9,6,3]
 
-# [1,2]             [1,3,5]
-# [3,4] --> 90 -->  [2,4,6]
-# [5,6]
-
+grid =  [[1,2,3],[4,5,6],[7,8,9]]
 flip_by_90(grid)
-flip_by_90(grid2)
+grid =  [[1,2,3],[4,5,6],[7,8,9]]
+flip_by_90_in_place(grid)
+grid =  [[1,2,3],[4,5,6],[7,8,9]]
+flip_by_90_with_numpy(grid)
