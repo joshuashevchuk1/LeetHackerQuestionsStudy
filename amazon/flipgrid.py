@@ -1,4 +1,6 @@
-def flip_by_90_other(grid):
+# TODO: find an efficient solution
+
+def flip_by_90(grid):
     flipped = []
     for i in range(len(grid[0])):
         new_row = [grid[j][i] for j in range(len(grid))]
@@ -16,8 +18,5 @@ grid2 = [[1,2],[3,4],[5,6]]
 # [3,4] --> 90 -->  [2,4,6]
 # [5,6]
 
-flip_by_90_other(grid)
-print("len(grid) : " + str(len(grid)))
-
-flip_by_90_other(grid2)
-print("len(grid) : " + str(len(grid2)))
+flip_by_90(grid)
+flip_by_90(grid2)
