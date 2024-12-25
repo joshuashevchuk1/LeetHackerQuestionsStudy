@@ -5,7 +5,7 @@ def flip_by_90_other(grid):
         flipped.append(new_row)
     print("flipped : " + str(flipped))
 
-grid = [[1,2,3],[4,5,6],[7,8,9]]
+grid =  [[1,2,3],[4,5,6],[7,8,9]]
 grid2 = [[1,2],[3,4],[5,6]]
 
 # [1.2.3]            [1,4,7]
