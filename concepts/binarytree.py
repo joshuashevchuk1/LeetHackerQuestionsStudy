@@ -1,3 +1,6 @@
+import numpy as np
+
+
 class Node:
     def __init__(self, key):
         self.key = key
@@ -39,6 +42,14 @@ class BinaryTree:
         self.preOrderTraveral(node.left)
         self.preOrderTraveral(node.right)
 
+    def findTreeMaximumDepth(self, node):
+        def iterate_node(node):
+            if node is None:
+                return 0
+            return 1 + max(iterate_node(node.left), iterate_node(node.right))
+
+        print("\n")
+        print("max depth is : " + str(iterate_node(node)))
 
     def display(self, root, space=0, level_spacing=10):
         if root is None:
@@ -55,7 +66,11 @@ class BinaryTree:
 
 if __name__ == "__main__":
     tree = BinaryTree()
-    elements = [20, 10, 30, 5, 15, 25, 35]
+    elements = [20, 10, 30, 5, 15, 25, 35,34,5]
+    elements = []
+    for i in range(234):
+        elements.append(np.random.rand())
+
     for element in elements:
         tree.insert(element)
 
@@ -65,5 +80,6 @@ if __name__ == "__main__":
     print("\n")
     print("pre order")
     tree.preOrderTraveral(tree.root)
+    tree.findTreeMaximumDepth(tree.root)
 
 
