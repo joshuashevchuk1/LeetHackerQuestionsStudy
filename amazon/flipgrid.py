@@ -30,7 +30,7 @@ def flip_by_90_with_numpy(grid):
     a = a.tolist()
     for row in a:
         row.reverse()
-    return print("a : "  + str(a))
+    return print("flipped with numpy : "  + str(a))
 
 # [1.2.3]            [7,4,1]
 # [4,5,6] --> 90 --> [8,5,2]
