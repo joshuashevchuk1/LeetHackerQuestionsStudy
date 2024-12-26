@@ -51,6 +51,20 @@ class BinaryTree:
         print("\n")
         print("max depth is : " + str(iterate_node(node)))
 
+    def invertTree(self, node):
+        def recurse(node):
+            if not node:  # Base case: return when node is None
+                return
+            # Invert the current node's children
+            node.left, node.right = node.right, node.left
+            # Recur on left and right children
+            recurse(node.left)
+            recurse(node.right)
+
+        recurse(node)
+        self.inOrder_traversal(node)
+
+
     def display(self, root, space=0, level_spacing=10):
         if root is None:
             return
@@ -67,9 +81,9 @@ class BinaryTree:
 if __name__ == "__main__":
     tree = BinaryTree()
     elements = [20, 10, 30, 5, 15, 25, 35,34,5]
-    elements = []
-    for i in range(234):
-        elements.append(np.random.rand())
+    # elements = []
+    # for i in range(234):
+    #     elements.append(np.random.rand())
 
     for element in elements:
         tree.insert(element)
@@ -81,5 +95,6 @@ if __name__ == "__main__":
     print("pre order")
     tree.preOrderTraveral(tree.root)
     tree.findTreeMaximumDepth(tree.root)
+    tree.invertTree(tree.root)
 
 
