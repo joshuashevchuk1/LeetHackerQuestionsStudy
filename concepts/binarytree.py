@@ -1,3 +1,6 @@
+from networkx.generators.classic import balanced_tree
+
+
 class Node:
     def __init__(self, key):
         self.key = key
@@ -39,6 +42,13 @@ class BinaryTree:
         self.preOrderTraveral(node.left)
         self.preOrderTraveral(node.right)
 
+    def postOrderTraveral(self, node):
+        if node is None:
+            return
+        self.preOrderTraveral(node.left)
+        self.preOrderTraveral(node.right)
+        print(node.key, end=" ")
+
     def findTreeMaximumDepth(self, node):
         def iterate_node(node):
             if node is None:
@@ -74,10 +84,24 @@ class BinaryTree:
         # Print the left child
         self.display(root.left, space)
 
+    def isBalanced(self, node):
+        def getHeight(node):
+            if node is None:
+                return 0
+            return 1 + max(getHeight(node.left), getHeight(node.right))
+
+        l = getHeight(node.left)
+        r = getHeight(node.right)
+
+        if abs(l - r) > 1:
+            return False
+        return True
 
 if __name__ == "__main__":
     tree = BinaryTree()
-    elements = [20, 10, 30, 5, 15, 25, 35,34,5]
+    elements = [20, 10, 30, 5, 15, 25, 35,34,5,4,5,3,3,3,3,3,3]
+    balanced_input = [20, 10, 30, 5, 15, 25, 35]
+    balanced_tree = BinaryTree()
     # elements = []
     # for i in range(234):
     #     elements.append(np.random.rand())
@@ -93,5 +117,13 @@ if __name__ == "__main__":
     tree.preOrderTraveral(tree.root)
     tree.findTreeMaximumDepth(tree.root)
     tree.invertTree(tree.root)
+    print("is balanced?: " , tree.isBalanced(tree.root))
+
+    for element in balanced_input:
+        balanced_tree.insert(element)
+
+    balanced_tree.display(balanced_tree.root)
+    print("is balanced tree balanced?: ",  balanced_tree.isBalanced(balanced_tree.root))
+
 
 
