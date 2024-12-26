@@ -1,5 +1,3 @@
-from networkx.generators.classic import balanced_tree
-
 
 class Node:
     def __init__(self, key):
