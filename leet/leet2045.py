@@ -20,6 +20,10 @@ The only valid partition is ("s","s","s","s","s","s").
 """
 
 def getMinimumPartitions(string):
+    """
+    :param string:
+    :return:
+    """
     current_set = set()
     sets = []
 
@@ -34,6 +38,10 @@ def getMinimumPartitions(string):
 
 
 def getMinimumPartitionsV2(string):
+    """
+    :param string:
+    :return:
+    """
     partition_count = 1  # Start with one partition
     current_set = set()  # Set to track unique characters in the current substring
 
@@ -48,6 +56,10 @@ def getMinimumPartitionsV2(string):
 
 class Solution:
     def partitionString(self, s: str) -> int:
+        """
+        :param s:
+        :return:
+        """
         sub = ""
         num = 0
         for i in s:
