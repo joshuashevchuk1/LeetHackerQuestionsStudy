@@ -1,7 +1,7 @@
 
 class Node:
-    def __init__(self, key):
-        self.key = key
+    def __init__(self, val):
+        self.val = val
         self.left = None
         self.right = None
 
@@ -16,7 +16,7 @@ class BinaryTree:
             self._insert(self.root, key)
 
     def _insert(self, current, key):
-        if key < current.key:
+        if key < current.val:
             if current.left is None:
                 current.left = Node(key)
             else:
@@ -30,13 +30,13 @@ class BinaryTree:
     def inOrder_traversal(self, node):
         if node is not None:
             self.inOrder_traversal(node.left)
-            print(node.key , end=" ")
+            print(node.val, end=" ")
             self.inOrder_traversal(node.right)
 
     def preOrderTraveral(self, node):
         if node is None:
             return
-        print(node.key, end=" ")
+        print(node.val, end=" ")
         self.preOrderTraveral(node.left)
         self.preOrderTraveral(node.right)
 
@@ -95,6 +95,26 @@ class BinaryTree:
             return False
         return True
 
+    def loweestCommon(self,node,nodes):
+        print("root.val is : ", node.val)
+        nodes_set = set(nodes)
+        def dig(root):
+            if root is None:
+                return
+            if root.val in nodes_set:
+                return root.val
+            l = dig(root.left)
+            r = dig(root.right)
+            print("l : ", l)
+            print("r : ", r)
+            print("root.value : ", root.val)
+            if l and r:
+                return root.val
+            return l if l else r
+
+        common = dig(node)
+        return common
+
 if __name__ == "__main__":
     tree = BinaryTree()
     elements = [20, 10, 30, 5, 15, 25, 35,34,5,4,5,3,3,3,3,3,3]
@@ -107,7 +127,6 @@ if __name__ == "__main__":
     for element in elements:
         tree.insert(element)
 
-    tree.display(tree.root)
     print("in order ")
     tree.inOrder_traversal(tree.root)
     print("\n")
@@ -120,8 +139,9 @@ if __name__ == "__main__":
     for element in balanced_input:
         balanced_tree.insert(element)
 
-    balanced_tree.display(balanced_tree.root)
     print("is balanced tree balanced?: ",  balanced_tree.isBalanced(balanced_tree.root))
+    balanced_tree.inOrder_traversal(balanced_tree.root)
+    print("common is : " , balanced_tree.loweestCommon(balanced_tree.root,[25,35]))
 
 
 
