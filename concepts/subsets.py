@@ -1,4 +1,11 @@
 
+#Backtracking is an algorithmic technique used for solving problems incrementally,
+# where you build a solution piece by piece and backtrack whenever you
+# determine that the current partial solution cannot lead to a valid
+# complete solution. It’s widely used for combinatorial problems,
+# like generating permutations, subsets, solving puzzles (e.g., Sudoku),
+# and finding paths in a maze.
+
 def find_all_subsets(nums):
    result = []
    def backtrack(start,path):
