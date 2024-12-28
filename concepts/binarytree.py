@@ -115,6 +115,11 @@ class BinaryTree:
         common = dig(node)
         return common
 
+    def findRoot(self, p):
+        while p.parent is not None:
+            p = p.parent
+        return p
+
 if __name__ == "__main__":
     tree = BinaryTree()
     elements = [20, 10, 30, 5, 15, 25, 35,34,5,4,5,3,3,3,3,3,3]

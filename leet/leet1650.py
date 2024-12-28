@@ -41,12 +41,45 @@ class BinaryTree:
             return right
         return None
 
-
-
 class Solution:
     def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
-        return
+        a,b = p,q
+        def findCommon(a,b):
+            while a != b:
+                a = a.parent if a else q
+                b = b.parent if b else p
+            return a
+        return findCommon(a,b)
 
+class Solution_faster:
+    def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
+        # Step 1: Calculate depths of both nodes
+        def get_depth(node):
+            depth = 0
+            while node:
+                node = node.parent
+                depth += 1
+            return depth
+
+        depth_p = get_depth(p)
+        depth_q = get_depth(q)
+
+        # Step 2: Align the depths of both nodes
+        while depth_p > depth_q:
+            p = p.parent
+            depth_p -= 1
+        while depth_q > depth_p:
+            q = q.parent
+            depth_q -= 1
+
+        # Step 3: Traverse upwards until we find the common ancestor
+        while p != q:
+            p = p.parent
+            q = q.parent
+
+        return p
+
+setNode = set()
 
 balanced_input = [20, 10, 30, 5, 15, 25, 35]
 balanced_tree = BinaryTree()
@@ -55,6 +88,7 @@ for element in balanced_input:
     balanced_tree.insert(element)
 
 new_node = Node(5)
+setNode.add(new_node)
 node = balanced_tree.getNode(balanced_tree.root,new_node)
 print(node.parent.val)
 
