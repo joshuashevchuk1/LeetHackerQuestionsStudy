@@ -43,3 +43,16 @@ def LCSTabulation(text1,text2):
 text1="dog"
 text2="cad"
 print("table: ", LCSTabulation(text1,text2))
+
+# #You apply a dynamic programming (DP) table when you have a problem that exhibits the following key characteristics:
+#
+# 1. Overlapping Subproblems:
+# The problem can be broken down into smaller subproblems, and these subproblems are solved repeatedly.
+# Instead of solving the same subproblem multiple times (which would be inefficient), we solve each subproblem once and store the results to reuse later.
+# Example: In the Longest Common Subsequence (LCS) problem, the subproblems involve calculating the LCS for progressively smaller prefixes of both strings.
+# The same subproblems may be encountered multiple times during recursion.
+# A DP table helps store the results of these subproblems and avoids redundant calculations.
+#
+# 2. Optimal Substructure:
+# The optimal solution to the problem can be constructed efficiently from the optimal solutions to its subproblems.
+# DP relies on the fact that solving smaller subproblems optimally will allow you to solve larger problems optimally.
