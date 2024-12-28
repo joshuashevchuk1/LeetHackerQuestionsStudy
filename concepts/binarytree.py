@@ -95,7 +95,7 @@ class BinaryTree:
             return False
         return True
 
-    def loweestCommon(self,node,nodes):
+    def lowestCommon(self, node, nodes):
         print("root.val is : ", node.val)
         nodes_set = set(nodes)
         def dig(root):
@@ -141,7 +141,7 @@ if __name__ == "__main__":
 
     print("is balanced tree balanced?: ",  balanced_tree.isBalanced(balanced_tree.root))
     balanced_tree.inOrder_traversal(balanced_tree.root)
-    print("common is : " , balanced_tree.loweestCommon(balanced_tree.root,[25,35]))
+    print("common is : ", balanced_tree.lowestCommon(balanced_tree.root, [25, 35]))
 
 
 
