@@ -7,7 +7,7 @@
 # 1. sort the double array by the 1st merged element
 # 2. iterate of the array with the two pointer approach
 #    merged = []
-#    c = nums[i][0]
+#    c = nums[i][0]u
 # 3. update this current as you slide across the array.
 #    this condition is if c[start] > nums[i][end] start = 0, end = 1 (inner arrays have len 2)
 # 4. if true merge to c.
