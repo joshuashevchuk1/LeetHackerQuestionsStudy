@@ -11,9 +11,27 @@
 #
 # Conceptual plan:
 #
-# 1. iterate the left and right side of the array
-# 2. if palondromic no need to sum
-# 3. if not palondromic, try to sum and make palondromic
-# 4. if cannot be palondromic. return zero.
-# 5. otherwise two pointer approach
+# Initialize two pointers:
 #
+# left starting from the beginning (0).
+# right starting from the end (n - 1).
+# Iterate while left < right:
+#
+# Case 1: If nums[left] == nums[right], these elements are already palindromic. Move the pointers inward:
+#
+# Increment left.
+# Decrement right.
+# Case 2: If nums[left] != nums[right], perform the following:
+#
+# If nums[left] < nums[right]:
+# Merge nums[left] with nums[left + 1] by summing them.
+# Replace nums[left] and move left inward.
+# If nums[right] < nums[left]:
+# Merge nums[right] with nums[right - 1] by summing them.
+# Replace nums[right] and move right inward.
+# Stop the process when the pointers meet or cross (left >= right):
+#
+# At this point, the array is guaranteed to be a palindrome if all conditions are followed.
+# Edge case: If the array cannot be transformed into a palindrome (though this is not possible under valid constraints), return 0. However, since merging always reduces the array size, it should always converge to a palindrome eventually.
+#
+# Return the count of operations performed during the process.
