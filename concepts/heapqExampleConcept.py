@@ -1,7 +1,6 @@
 import sys
 import heapq
 
-
 def query():
     li = []  # Min-heap to store elements
     present = set()  # Set to keep track of valid elements in the heap
@@ -26,5 +25,11 @@ def query():
             else:
                 print("List is empty")  # Optional: Handle empty case explicitly
 
+a = [1,2,3,4,5]
 
-query()
+def get_n_smallest(a):
+    return heapq.nsmallest(2, set(a))
+
+smallest = get_n_smallest(a)
+
+print(smallest)
