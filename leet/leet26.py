@@ -1,5 +1,5 @@
 class Solution:
-    def removeDuplicates(self, nums: List[int]) -> int:
+    def removeDuplicates(self, nums: list[int]) -> int:
         nums.sort()
 
         u = set()
@@ -10,3 +10,15 @@ class Solution:
                 u.add(nums[i])
 
 # O(n^2)
+
+class Solution:
+    def removeDuplicates(self, nums: list[int]) -> int:
+        new_nums = []
+        u = set()
+        for num in nums:  # O(n)
+            if num not in u:
+                u.add(num)
+                new_nums.append(num) #O(1)
+        nums[:] = new_nums
+
+# O(n)
