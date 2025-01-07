@@ -49,6 +49,7 @@ def group_anagrams(strs):
 # Tracking	Implicit group skipping	Explicit visited set
 # Efficiency	O(n^2) with incorrect grouping	O(n^2 * k log k) with correct grouping
 # Correctness	Detects palindromes, not anagrams	Correctly groups anagrams
+#
 
 def group_palindromes(strs):
     visited = set()  # Keeps track of strings that are already grouped
