@@ -8,6 +8,7 @@
 # If the door was used in the previous second for entering, the person who wants to enter goes first.
 # If the door was used in the previous second for exiting, the person who wants to exit goes first.
 # If multiple persons want to go in the same direction, the person with the smallest index goes first.
+#
 # Return an array answer of size n where answer[i] is the second at which the ith person crosses the door.
 #
 # Conceptual plan:
