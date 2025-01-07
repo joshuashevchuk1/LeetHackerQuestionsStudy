@@ -60,3 +60,9 @@ def numIslands(grid):
                 bfs(grid, i, j)  # Start BFS from this land cell
     return island_count
 
+# BFS is generally safer in terms of memory and avoids issues with deep recursion in DFS.
+# It may also be slightly more efficient in terms of handling certain grid shapes.
+# DFS might be faster in cases where the island is relatively compact and doesn’t require too deep of recursion.
+# In terms of asymptotic time complexity, both BFS and DFS for this problem are O(m * n), so the difference in
+# performance would not be due to time complexity but to practical considerations like memory usage,
+# recursion depth, and specific grid shapes.
