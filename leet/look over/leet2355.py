@@ -53,10 +53,10 @@
 # 5. the last amount of books to take will be the most
 #
 
-# This one is tough. Best to review the answer and conceputs missing
+# This one is tough. Best to review the answer and concepts missing
 
 class Solution:
-    def maximumBooks(self, books: List[int]) -> int:
+    def maximumBooks(self, books: list[int]) -> int:
         n = len(books)
 
         # Helper function to calculate the sum of books in a given range [l, r]
