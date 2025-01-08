@@ -52,8 +52,17 @@
 
 #
 #  create a window of len(target),
+#  sum/min etc on the window
+#  keep track of the max_sum
+#  keep track of the index position
 #  slide across the iterable
+#  a. subtract the ith element from the window sum
+#  b. add the ith + k element to the window sum
+#  return array position or sum/min etc
 #
+
+#
+# LC: 643,3,76
 #
 
 
