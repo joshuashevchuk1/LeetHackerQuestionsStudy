@@ -34,6 +34,8 @@ def numIslands(grid):
 
 # this can be increased for performance on the iteration using a que
 
+# bfs method
+
 from collections import deque
 
 def numIslands(grid):
