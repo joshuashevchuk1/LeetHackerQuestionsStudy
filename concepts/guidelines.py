@@ -47,8 +47,16 @@
 
 #
 # common problems for these would be subarrays
+#
 # nested loops lead to an order of O(n * m)
 # use a sliding window for O(n)
+#
+# Sliding window is ideal for problems like:
+#
+# Finding the maximum sum of a subarray of length k.
+# Longest substring with at most k distinct characters.
+# Contiguous subarrays that meet certain conditions (e.g., sum, product).
+#
 
 #
 #  create a window of len(target),
