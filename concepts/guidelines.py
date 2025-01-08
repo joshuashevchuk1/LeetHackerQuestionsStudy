@@ -65,6 +65,25 @@
 # LC: 643,3,76
 #
 
+#============================================================================
+
+#
+# 11. dfs
+#
+
+#
+# dfs is used to explore ALL paths or branches from graphs or tres. So its mostly used for graph and tree problems
+#
+# its used for the following common problems
+# a. finding a path between two nodes
+# b. checking if a graph contains a cycle
+# c. finding a topological order in a directed acyclic graph (DAG)
+# d. counting the number of connected components in a graph
+#
+
+#
+# LC: 133, 113, 210
+#
 
 
 
