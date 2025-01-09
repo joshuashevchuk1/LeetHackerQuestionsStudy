@@ -170,6 +170,8 @@ def maxHeapApproach(arr, k):
 #
 # processing nodes before the parent use post-order traversal
 #
+# to explore all nodes use level order
+#
 
 # there is also level order traversal
 
