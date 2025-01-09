@@ -30,7 +30,7 @@ class Solution:
                     visited.add(neighbor)
                     dfs(neighbor)
 
-        for city in range(len(arr)):
+        for city in range(n):
             if city not in visited:
                 provinces += 1
                 visited.add(city)
