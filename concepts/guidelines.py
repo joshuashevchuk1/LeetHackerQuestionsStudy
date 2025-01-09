@@ -71,6 +71,34 @@ import heapq
 #  return array position or sum/min etc
 #
 
+# code
+
+class Solution:
+    def minimualSubarraySum(self, arr, k):
+        ms = 0
+        # Use a sliding window approach
+        for i in range(len(arr) - k + 1):  # We only need to go to len(arr) - k
+            cs = sum(arr[i:i+k])  # sum of the subarray from i to i+k
+            ms = max(ms, cs)  # Update max sum
+        return ms
+
+class SolutionQ:
+    def minimualSubarraySumQ(self, arr, k):
+        current_sum = sum(arr[:k])  # Initialize sum with first k elements
+        ms = current_sum
+
+        window = deque(arr[:k])  # Initialize the deque with the first k elements
+
+        for i in range(k, len(arr)):  # Start sliding the window
+            # Update the sum by removing the leftmost element and adding the new element
+            current_sum -= window.popleft()  # Pop the leftmost element (the one leaving the window)
+            current_sum += arr[i]  # Add the new element to the window
+            window.append(arr[i])  # Add the new element to the deque
+
+            ms = max(ms, current_sum)  # Track the max sum
+
+        return ms
+
 #
 # LC: 643,3,76
 #
