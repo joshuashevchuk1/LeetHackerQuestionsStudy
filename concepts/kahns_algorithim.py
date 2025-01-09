@@ -1,3 +1,16 @@
+# Steps for Solving Using Kahn's Algorithm:
+
+# 1. Graph Representation: Use an adjacency list to represent the graph and an in-degree array
+# to track the number of prerequisites for each task.
+
+# 2. Queue Initialization: Initialize a queue with tasks that have no prerequisites (in-degree of 0).
+
+# 3. Processing: Use BFS to process tasks from the queue, and update the in-degrees of dependent tasks.
+
+
+# 4. Cycle Detection: If after processing all tasks, there are tasks left unprocessed (with non-zero in-degree),
+# it means there is a cycle, and topological sorting is not possible
+
 from collections import deque, defaultdict
 
 
