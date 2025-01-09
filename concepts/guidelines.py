@@ -163,6 +163,14 @@ def maxHeapApproach(arr, k):
 # or inorder (left, action, right)
 #
 
+#
+# to retrieve values/actions of a sorted tree, use in order traversal
+#
+# to create a copy of a tree (serialization) use pre-order
+#
+# processing nodes before the parent use post-order traversal
+#
+
 # there is also level order traversal
 
 # code
