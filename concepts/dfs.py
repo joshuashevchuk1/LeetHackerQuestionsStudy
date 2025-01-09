@@ -30,7 +30,7 @@ graph = {
 
 def dfs_recursive(graph, node, visited):
     if node not in visited: # a visited is important as it is an empty set for checking
-        print(node, end=" ")
+        print(node, end=" ") # action
         visited.add(node) # once the node is added you can continue
         for neighbor in graph[node]: # the graph (set of array)
             dfs_recursive(graph, neighbor, visited) # didn't find what you are looking for, do it again.
