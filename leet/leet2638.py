@@ -90,10 +90,8 @@ class Solution:
 
 # fastest solution
 
-from typing import List
-
 class Solution:
-    def countTheNumOfKFreeSubsets(self, nums: List[int], k: int) -> int:
+    def countTheNumOfKFreeSubsets(self, nums: list[int], k: int) -> int:
         nums.sort()
         n = len(nums)
         dp = [1] * n  # Base case: each element alone forms a valid subset

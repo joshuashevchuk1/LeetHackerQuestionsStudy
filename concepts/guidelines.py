@@ -314,4 +314,20 @@ def bfs(graph, start):
 
 #
 # commonly used for overlapping problems
+# TheNumOfKFreeSubsets
 #
+
+# code example
+
+class Solution:
+    def countTheNumOfKFreeSubsets(self, nums: list[int], k: int) -> int:
+        nums.sort()
+        n = len(nums)
+        dp = [1] * n  # Base case: each element alone forms a valid subset
+
+        for i in range(n):
+            for j in range(i):
+                if abs(nums[i] - nums[j]) != k:
+                    dp[i] += dp[j]
+
+        return sum(dp)
