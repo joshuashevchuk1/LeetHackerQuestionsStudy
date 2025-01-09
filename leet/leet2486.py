@@ -42,8 +42,28 @@ class Solution:
                 i += 1
         return len(t) - i
 
+
+    def appendCharactersOther(self, s: str, t: str) -> int:
+        i = 0
+        # in this case no breaks need to be defined
+        # the additional range(len(s)) comp is not needed.
+        for char in s:
+            if i < len(t) and char == t[i]:
+                i += 1
+        return len(t) - i
+
 solution = Solution()
 s ="abx"
 t ="xba"
+d = "xbaf"
+e = "xbaf"
+g = "fbax"
+k = "uop"
 print(solution.appendCharactersCorrect(s,t))
+print(solution.appendCharactersBest(s,t))
+print(solution.appendCharactersOther(s,t))
+print(solution.appendCharactersOther(s,d))
+print(solution.appendCharactersOther(d,e))
+print(solution.appendCharactersOther(g,e))
+print(solution.appendCharactersOther(s,k))
 
