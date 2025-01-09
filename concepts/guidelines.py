@@ -1,4 +1,6 @@
 # general doc for guidelines on when to use which method
+from leet.solve_me.leet323 import visited
+
 
 #============================================================================
 #
@@ -228,6 +230,55 @@ def levelOrder(root):
 # LC: 133, 113, 210
 #
 
+#============================================================================
+
+#
+# 12. bfs
+#
+
+#
+# LC: 102, 994, 127
+#
+
+#
+# similar to dfs but used for ALL levels from graphs or trees.
+#
+
+#
+# finding the shortest path between two nodes
+# printing all nodes of a tree level by level (can also be done with level order traversal)
+# finding all connected components in a graph
+# finding sorted transformation sequence from one word to another
+#
+
+# code
+
+# 1. add the starting node to the queue
+# 2. add the start to the visited
+# 3. while queue
+# 4. deque the node
+# 5. for iterate over the node, action it
+# 6. add then neighbor into the queue
+# 7. add the neighhbor into the visited
+# 8. repeat until queue is empty
+
+
+visited = set()
+
+def bfs(graph, start):
+    queue = deque([start])
+    visited.add(start)
+
+    while queue:
+        vertex = queue.popleft()
+        print(vertex)
+
+        for neighbor in graph(vertex):
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)
+
+#============================================================================
 
 #
 # 15. dp
