@@ -127,6 +127,10 @@ def rsl(head):
         current = next # now set current to the next and repeat until tail of the linked list
     return
 
+# code:
+
+# 206,92, 24
+
 #============================================================================
 
 #
@@ -385,6 +389,10 @@ def bfs(graph, start):
 
 #
 # 15. dp
+#
+
+#
+# LC: 70,322,1143,300,416,312
 #
 
 #
