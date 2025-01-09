@@ -1,4 +1,7 @@
 # not num, use i derp
+from leet.leet2461 import SolutionQ
+
+
 class Solution:
     def minimualSubarraySum(self, arr, k):
         ms = 0
@@ -15,7 +18,7 @@ print(solution.minimualSubarraySum(arr,2))
 
 # for 2d arrays
 
-class Solution:
+class Solution2D:
     def minimualSubarraySum(self, arr, k):
         ms = 0
         rows = len(arr)
@@ -28,24 +31,30 @@ class Solution:
                 ms = max(ms, cs)  # Track the maximum sum
         return ms
 
-# use a queue for a better result. The queue is faster!
+# use a queue
+from collections import deque
+
+
 class SolutionQ:
     def minimualSubarraySumQ(self, arr, k):
-        current_sum = sum(arr[:k])  # Initial sum of the first window
+        current_sum = sum(arr[:k])  # Initialize sum with first k elements
         ms = current_sum
 
-        # Use a sliding window approach
-        for i in range(k, len(arr)):  # Start sliding the window from index k onwards
-            # Update the sum by removing the element that's left out and adding the new one
-            current_sum = current_sum - arr[i - k] + arr[i]
-            ms = max(ms, current_sum)
+        window = deque(arr[:k])  # Initialize the deque with the first k elements
+
+        for i in range(k, len(arr)):  # Start sliding the window
+            # Update the sum by removing the leftmost element and adding the new element
+            current_sum -= window.popleft()  # Pop the leftmost element (the one leaving the window)
+            current_sum += arr[i]  # Add the new element to the window
+            window.append(arr[i])  # Add the new element to the deque
+
+            ms = max(ms, current_sum)  # Track the max sum
 
         return ms
 
 
 # can be optimized using a prefix sum
-
-class Solution:
+class SolutionP:
     def minimualSubarraySum(self, arr, k):
         ms = 0
         current_sum = sum(arr[:k])  # Initial sum of the first window
