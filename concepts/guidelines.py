@@ -368,7 +368,7 @@ def bfs(graph, start):
 # TheNumOfKFreeSubsets
 #
 
-# code example
+# code examples
 
 class Solution:
     def countTheNumOfKFreeSubsets(self, nums: list[int], k: int) -> int:
@@ -382,3 +382,15 @@ class Solution:
                     dp[i] += dp[j]
 
         return sum(dp)
+
+def getFibTabulation(n):
+    dp = [0] * (n+1)
+
+    dp[0] = 0
+    dp[1] = 1
+    print(dp)
+
+    for i in range(2, n + 1):
+        dp[i] = dp[i-1] + dp[i-2]
+        print(dp)
+    return dp[n]
