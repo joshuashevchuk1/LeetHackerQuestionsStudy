@@ -1,5 +1,5 @@
 class Solution:
-    def subarraySum(self, nums: List[int], k: int) -> int:
+    def subarraySum(self, nums: list[int], k: int) -> int:
         array_count = 0
         for i in range(len(nums)):
             current_sum = 0  # Reset current_sum for each new starting point
@@ -16,7 +16,7 @@ class Solution:
 # Sum[i,j] = P[j] - P[i-1]
 
 class Solution:
-    def subarraySum(self, nums: List[int], k: int) -> int:
+    def subarraySum(self, nums: list[int], k: int) -> int:
         # Step 1: Initialize the hashmap with the base case {0: 1}
         # which represents the prefix sum before we start, and a counter for the subarrays
         prefix_sum_count = {0: 1}  # Tracks how many times each prefix sum has occurred.
