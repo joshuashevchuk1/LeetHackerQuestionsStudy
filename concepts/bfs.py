@@ -1,5 +1,8 @@
 from collections import deque
 
+from concepts.dfs import visited
+
+
 def bfs(grid, i, j):
     # Initialize a queue for BFS
     queue = deque([(i, j)])
@@ -11,3 +14,17 @@ def bfs(grid, i, j):
             if 0 <= nx < len(grid) and 0 <= ny < len(grid[0]) and grid[nx][ny] == "1":
                 grid[nx][ny] = "0"  # Mark as visited
                 queue.append((nx, ny))  # Add to the queue for further exploration
+
+
+def bfs2(graph, start):
+    queue = deque([start])
+    visited.add(start)
+
+    while queue:
+        vertex = queue.popleft()
+        print(vertex)
+
+        for neighbor in graph(vertex):
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)

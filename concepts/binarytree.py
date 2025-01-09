@@ -1,4 +1,6 @@
 
+from collections import deque
+
 class Node:
     def __init__(self, val):
         self.val = val
@@ -119,6 +121,32 @@ class BinaryTree:
         while p.parent is not None:
             p = p.parent
         return p
+
+    def levelOrder(self,root):
+        if not root:  # always return on root!
+            return
+
+        result = []
+        queue = deque([root])
+
+        while queue:  # iterate until queue is empty. In this case queue is the tree
+            level_size = len(queue)
+            current_level = []  # add to the current level and pass through
+
+            for _ in range(level_size):
+                node = queue.popleft()  # get the node by popping the queue
+                current_level.append(node.val)
+
+                if node.left:
+                    queue.append(node.left)
+
+                if node.right:
+                    queue.append(node.right)
+
+                result.append(current_level)
+
+            return result
+
 
 if __name__ == "__main__":
     tree = BinaryTree()

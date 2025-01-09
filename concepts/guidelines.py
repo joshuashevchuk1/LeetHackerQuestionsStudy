@@ -1,4 +1,6 @@
 # general doc for guidelines on when to use which method
+from leet.solve_me.leet323 import visited
+import heapq
 
 #============================================================================
 #
@@ -47,8 +49,16 @@
 
 #
 # common problems for these would be subarrays
+#
 # nested loops lead to an order of O(n * m)
 # use a sliding window for O(n)
+#
+# Sliding window is ideal for problems like:
+#
+# Finding the maximum sum of a subarray of length k.
+# Longest substring with at most k distinct characters.
+# Contiguous subarrays that meet certain conditions (e.g., sum, product).
+#
 
 #
 #  create a window of len(target),
@@ -64,6 +74,141 @@
 #
 # LC: 643,3,76
 #
+
+#============================================================================
+
+#
+# 7: Top k elements
+#
+
+#
+#  this can be done using the min heap approach
+#
+
+#
+# the min heap_approach involves making the heap (array or set)
+# then iterating over the heap
+# for in range of the heap, keep the heap of size k.
+# if greater than size k, pop the heap. this makes it O log(k) rather than O log(n)
+# the first element of the min heap gives the largest element
+
+# for k smallest use a min heap
+# for k largest use a max heap
+
+# a max heap is just the min heap in reverse. where the last element is the largest
+
+# LC: 215, 347, 373
+
+# code:
+
+
+def minHeapApproach(arr,k):
+    min_heap = []
+    l = len(arr)
+    for i in range(l):
+        heapq.heappush(min_heap,i)
+        if len(min_heap) > k:
+            heapq.heappop(min_heap) # this pops the smallest element by definition of heappop()
+    return min_heap[0]
+
+def maxHeapApproach(arr, k):
+    max_heap = []
+    for num in arr:
+        # Negate the element to simulate a max-heap using heapq (min-heap)
+        heapq.heappush(max_heap, -num)
+
+        # If the heap size exceeds k, pop the smallest (negated largest)
+        if len(max_heap) > k:
+            heapq.heappop(max_heap) # this pops the smallest element by definition of heappop()
+
+    # Return the kth largest, which is the root of the max-heap (negate back)
+    return -max_heap[0]
+
+#============================================================================
+
+#
+# 8. Overlapping problems pattern
+#
+
+#
+# these commonly apply to
+# merging intervals,
+# interval intersection,
+# insert interval,
+# finding minimum number of meeting rooms
+#
+
+#
+# LC: 56, 57, 435
+#
+
+#============================================================================
+
+#
+# 9. Modified binary search
+#
+
+#
+# LC: 33, 153, 240
+#
+
+#============================================================================
+
+#
+# 10. Binary Tree traversal
+#
+
+#
+# LC: 257, 230, 124, 107
+#
+
+#
+# used for anything with
+# post order(left, right, action),
+# pre order (action, left, right),
+# or inorder (left, action, right)
+#
+
+#
+# to retrieve values/actions of a sorted tree, use in order traversal
+#
+# to create a copy of a tree (serialization) use pre-order
+#
+# processing nodes before the parent use post-order traversal
+#
+# to explore all nodes use level order
+#
+
+# there is also level order traversal
+
+# code
+
+from collections import deque
+
+def levelOrder(root):
+    if not root: # always return on root!
+        return
+
+    result = []
+    queue = deque([root])
+
+    while queue: # iterate until queue is empty. In this case queue is the tree
+        level_size = len(queue)
+        current_level = [] # add to the current level and pass through
+
+        for _ in range(level_size):
+            node = queue.popleft() # get the node by popping the queue
+            current_level.append(node.val)
+
+            if node.left:
+                queue.append(node.left)
+
+            if node.right:
+                queue.append(node.right)
+
+            result.append(current_level)
+
+        return result
 
 #============================================================================
 
@@ -85,6 +230,83 @@
 # LC: 133, 113, 210
 #
 
+#============================================================================
+
+#
+# 12. bfs
+#
+
+#
+# LC: 102, 994, 127
+#
+
+#
+# similar to dfs but used for ALL levels from graphs or trees.
+#
+
+#
+# finding the shortest path between two nodes
+# printing all nodes of a tree level by level (can also be done with level order traversal)
+# finding all connected components in a graph
+# finding sorted transformation sequence from one word to another
+#
+
+# code
+
+# 1. add the starting node to the queue
+# 2. add the start to the visited
+# 3. while queue
+# 4. deque the node
+# 5. for iterate over the node, action it
+# 6. add then neighbor into the queue
+# 7. add the neighhbor into the visited
+# 8. repeat until queue is empty
+
+
+visited = set()
+
+def bfs(graph, start):
+    queue = deque([start])
+    visited.add(start)
+
+    while queue:
+        vertex = queue.popleft()
+        print(vertex)
+
+        for neighbor in graph(vertex):
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)
+
+#============================================================================
+
+# 13. Matrix traversal
+
+#
+# LC: 733, 200, 130
+#
+
+#============================================================================
+
+# 14. BackTracking
+
+#
+# exploring solving all potential solutions that do not lead to a valid solution
+#
+
+#
+# common-problems
+# a. permutations,
+# b. combinations,
+# c. sudoku,
+# d. n-queens,
+# e .all possible paths from start to endpoint in a maze
+# f. generate all parens of a given length
+#
+
+# LC: 46, 78, 51
+
+#============================================================================
 
 #
 # 15. dp
