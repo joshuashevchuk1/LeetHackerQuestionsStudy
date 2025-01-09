@@ -288,6 +288,25 @@ def bfs(graph, start):
 
 #============================================================================
 
+# 14. BackTracking
+
+#
+# exploring solving all potential solutions that do not lead to a valid solution
+#
+
+#
+# common-problems
+# a. permutations,
+# b. combinations,
+# c. sudoku,
+# d. n-queens,
+# e .all possible paths from start to endpoint in a maze
+# f. generate all parens of a given length
+
+# LC: 46, 78, 51
+
+#============================================================================
+
 #
 # 15. dp
 #
