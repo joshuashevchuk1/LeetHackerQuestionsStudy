@@ -226,6 +226,29 @@ def levelOrder(root):
 # d. counting the number of connected components in a graph
 #
 
+# code
+
+def dfs(grid, i, j):
+    if i < 0 or i >= len(grid) or j < 0 or j >= len(grid) or grid[i][j] == "0":
+        return
+    dfs[i][j] = "0" # visited marker
+
+    # iteration steps
+    dfs([i+1][j],i,j)# right
+    dfs([i-1][j],i,j) # left
+    dfs([i][j-1],i,j) # up
+    dfs([i][j+1],i,j) # down
+
+# also 1d
+
+def dfs_recursive(graph, node, visited):
+    if node not in visited: # a visited is important as it is an empty set for checking
+        print(node, end=" ")
+        visited.add(node) # once the node is added you can continue
+        for neighbor in graph[node]: # the graph (set of array)
+            dfs_recursive(graph, neighbor, visited) # didn't find what you are looking for, do it again.
+            # Do it for every node
+
 #
 # LC: 133, 113, 210
 #

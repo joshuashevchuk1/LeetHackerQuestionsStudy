@@ -65,7 +65,7 @@ def dfs(grid, i, j):
     dfs[i][j] = "0" # visited marker
 
     # iteration steps
-    dfs[i+1][j] # right
-    dfs[i-1][j] # left
-    dfs[i][j-1] # up
-    dfs[i][j+1] # down
+    dfs([i+1][j],i,j)# right
+    dfs([i-1][j],i,j) # left
+    dfs([i][j-1],i,j) # up
+    dfs([i][j+1],i,j) # down
