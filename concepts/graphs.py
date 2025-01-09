@@ -67,3 +67,34 @@ def topological_sort_kahn(edges, num_nodes):
 edges = [(5, 2), (5, 0), (4, 0), (4, 1), (2, 3), (3, 1)]
 num_nodes = 6
 print(topological_sort_kahn(edges, num_nodes))  # Output: [5, 4, 2, 3, 1, 0]
+
+from collections import defaultdict
+
+def topological_sort_dfs(edges, num_nodes):
+    # Create graph
+    graph = defaultdict(list)
+    for u, v in edges:
+        graph[u].append(v)
+
+    visited = [False] * num_nodes
+    stack = []
+
+    def dfs(node):
+        visited[node] = True
+        for neighbor in graph[node]:
+            if not visited[neighbor]:
+                dfs(neighbor)
+        stack.append(node)  # Add to stack in postorder
+
+    # Perform DFS for all unvisited nodes
+    for i in range(num_nodes):
+        if not visited[i]:
+            dfs(i)
+
+    # Reverse stack to get the topological order
+    return stack[::-1]
+
+# Example usage:
+edges = [(5, 2), (5, 0), (4, 0), (4, 1), (2, 3), (3, 1)]
+num_nodes = 6
+print(topological_sort_dfs(edges, num_nodes))  # Output: [5, 4, 2, 3, 1, 0]
