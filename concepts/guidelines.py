@@ -106,6 +106,30 @@ class SolutionQ:
 #============================================================================
 
 #
+# 5: linked list reverse
+#
+
+# use 3 pointers on the list
+
+def rsl(head):
+    """
+    :param node:
+    :return:
+    """
+
+    prev = None
+    current = head #
+
+    while current is not None: #iterate from head!
+        next = current.next # get neighbor node
+        current.next = prev # set the previous (it starts at none
+        prev = current # set the previous to the current
+        current = next # now set current to the next and repeat until tail of the linked list
+    return
+
+#============================================================================
+
+#
 # 7: Top k elements
 #
 
