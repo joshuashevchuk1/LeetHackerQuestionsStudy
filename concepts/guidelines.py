@@ -1,5 +1,6 @@
 # general doc for guidelines on when to use which method
 from leet.solve_me.leet323 import visited
+import heapq
 
 #============================================================================
 #
