@@ -86,7 +86,7 @@ import heapq
 #
 
 #
-# the min heap_apporach involves making the heap (array or set)
+# the min heap_approach involves making the heap (array or set)
 # then iterating over the heap
 # for in range of the heap, keep the heap of size k.
 # if greater than size k, pop the heap. this makes it O log(k) rather than O log(n)
