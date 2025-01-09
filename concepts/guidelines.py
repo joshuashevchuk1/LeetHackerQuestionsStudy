@@ -76,6 +76,53 @@
 #============================================================================
 
 #
+# 7: Top k elements
+#
+
+#
+#  this can be done using the min heap approach
+#
+
+#
+# the min heap_apporach involves making the heap (array or set)
+# then iterating over the heap
+# for in range of the heap, keep the heap of size k.
+# if greater than size k, pop the heap. this makes it O log(k) rather than O log(n)
+# the first element of the min heap gives the largest element
+
+# for k smallest use a min heap
+# for k largest use a max heap
+
+# a max heap is just the min heap in reverse. where the last element is the largest
+
+# code:
+
+
+def minHeapApproach(arr,k):
+    min_heap = []
+    l = len(arr)
+    for i in range(l):
+        heapq.heappush(min_heap,i)
+        if len(min_heap) > k:
+            heapq.heappop(min_heap) # this pops the smallest element by definition of heappop()
+    return min_heap[0]
+
+def maxHeapApproach(arr, k):
+    max_heap = []
+    for num in arr:
+        # Negate the element to simulate a max-heap using heapq (min-heap)
+        heapq.heappush(max_heap, -num)
+
+        # If the heap size exceeds k, pop the smallest (negated largest)
+        if len(max_heap) > k:
+            heapq.heappop(max_heap) # this pops the smallest element by definition of heappop()
+
+    # Return the kth largest, which is the root of the max-heap (negate back)
+    return -max_heap[0]
+
+#============================================================================
+
+#
 # 11. dfs
 #
 
