@@ -6,6 +6,7 @@ class Solution:
         # Initialize dp table with zeros
         dp = [[0] * (n + 1) for _ in range(m + 1)] # this concept is needed.
 
+        # these dp always fill this way. it solves the problem due to overlapping subproblems and only a count is needed
         print(dp)
         for i in range(1, m + 1):
             for j in range(1, n + 1):
