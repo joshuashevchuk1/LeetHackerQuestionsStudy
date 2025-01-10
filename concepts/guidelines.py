@@ -71,9 +71,65 @@ import heapq
 #  return array position or sum/min etc
 #
 
+# code
+
+class Solution:
+    def minimualSubarraySum(self, arr, k):
+        ms = 0
+        # Use a sliding window approach
+        for i in range(len(arr) - k + 1):  # We only need to go to len(arr) - k
+            cs = sum(arr[i:i+k])  # sum of the subarray from i to i+k
+            ms = max(ms, cs)  # Update max sum
+        return ms
+
+class SolutionQ:
+    def minimualSubarraySumQ(self, arr, k):
+        current_sum = sum(arr[:k])  # Initialize sum with first k elements
+        ms = current_sum
+
+        window = deque(arr[:k])  # Initialize the deque with the first k elements
+
+        for i in range(k, len(arr)):  # Start sliding the window
+            # Update the sum by removing the leftmost element and adding the new element
+            current_sum -= window.popleft()  # Pop the leftmost element (the one leaving the window)
+            current_sum += arr[i]  # Add the new element to the window
+            window.append(arr[i])  # Add the new element to the deque
+
+            ms = max(ms, current_sum)  # Track the max sum
+
+        return ms
+
 #
 # LC: 643,3,76
 #
+
+#============================================================================
+
+#
+# 5: linked list reverse
+#
+
+# use 3 pointers on the list
+
+def rsl(head):
+    """
+    :param node:
+    :return:
+    """
+
+    prev = None
+    current = head #
+
+    while current is not None: #iterate from head!
+        next = current.next # get neighbor node
+        current.next = prev # set the previous (it starts at none
+        prev = current # set the previous to the current
+        current = next # now set current to the next and repeat until tail of the linked list
+    return
+
+# code:
+
+# 206,92, 24
 
 #============================================================================
 
@@ -226,6 +282,29 @@ def levelOrder(root):
 # d. counting the number of connected components in a graph
 #
 
+# code
+
+def dfs(grid, i, j):
+    if i < 0 or i >= len(grid) or j < 0 or j >= len(grid) or grid[i][j] == "0":
+        return
+    dfs[i][j] = "0" # visited marker
+
+    # iteration steps
+    dfs([i+1][j],i,j)# right
+    dfs([i-1][j],i,j) # left
+    dfs([i][j-1],i,j) # up
+    dfs([i][j+1],i,j) # down
+
+# also 1d
+
+def dfs_recursive(graph, node, visited):
+    if node not in visited: # a visited is important as it is an empty set for checking
+        print(node, end=" ")
+        visited.add(node) # once the node is added you can continue
+        for neighbor in graph[node]: # the graph (set of array)
+            dfs_recursive(graph, neighbor, visited) # didn't find what you are looking for, do it again.
+            # Do it for every node
+
 #
 # LC: 133, 113, 210
 #
@@ -313,5 +392,64 @@ def bfs(graph, start):
 #
 
 #
-# commonly used for overlapping problems
+# LC: 70,322,1143,300,416,312
 #
+
+#
+# commonly used for overlapping problems
+# TheNumOfKFreeSubsets
+#
+
+# code examples
+
+class Solution:
+    def countTheNumOfKFreeSubsets(self, nums: list[int], k: int) -> int:
+        nums.sort()
+        n = len(nums)
+        dp = [1] * n  # Base case: each element alone forms a valid subset
+
+        for i in range(n):
+            for j in range(i):
+                if abs(nums[i] - nums[j]) != k:
+                    dp[i] += dp[j]
+
+        return sum(dp)
+
+def getFibTabulation(n):
+    dp = [0] * (n+1)
+
+    dp[0] = 0
+    dp[1] = 1
+    print(dp)
+
+    for i in range(2, n + 1):
+        dp[i] = dp[i-1] + dp[i-2]
+        print(dp)
+    return dp[n]
+
+#============================================================================
+
+#
+# 17. binary search
+#
+
+def binary_search(nums, target):
+    left, right = 0, len(nums) - 1
+
+    while left <= right:
+        mid = (left + right) // 2  # Calculate the middle index
+        if nums[mid] == target:  # Found the target
+            return mid
+        elif nums[mid] < target:  # Target is on the right half
+            left = mid + 1
+        else:  # Target is on the left half
+            right = mid - 1
+
+    return -1  # Target not found
+
+# Example usage
+nums = [1, 3, 5, 7, 9, 11]
+target = 7
+print(binary_search(nums, target))  # Output: 3 (index of target 7)
+
+#============================================================================

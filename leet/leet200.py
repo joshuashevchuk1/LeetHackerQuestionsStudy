@@ -15,3 +15,37 @@
 # 5. remove all the 1s next to it in the zone.
 # 6. restart the iteration from you left off
 #
+
+
+def dfs(grid, i, j):
+    ibounds = len(grid)
+    jbounds = len(grid[0])
+
+    # Check if the current cell is out of bounds or already visited (0)
+    if i < 0 or i >= ibounds or j < 0 or j >= jbounds or grid[i][j] == 0:
+        return
+
+    # Mark this cell as visited
+    grid[i][j] = 0
+
+    # Explore all four directions
+    dfs(grid, i + 1, j)
+    dfs(grid, i - 1, j)
+    dfs(grid, i, j + 1)
+    dfs(grid, i, j - 1)
+
+
+def islands(grid):
+
+    count = 0
+    lg = len(grid)
+
+    for i in range(lg):
+        for j in range(len(grid[0])):
+            if grid[i][j] == 1:  # Found an unvisited land cell
+                dfs(grid, i, j)
+                count += 1  # Increment island count
+
+    return count
+
+print(islands([[1,0,0],[0,0,1]]))

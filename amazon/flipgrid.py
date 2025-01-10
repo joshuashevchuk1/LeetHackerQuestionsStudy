@@ -10,6 +10,20 @@ def flip_by_90(grid):
 
     print("flipped : " + str(flipped))
 
+def flip_by_90_better(grid):
+    n = len(grid)
+    # In-place operation to rotate the grid by 90 degrees
+    for i in range(n // 2):  # Only iterate until half the length
+        for j in range(i, n - i - 1):
+            # Perform 4-way swap in place
+            temp = grid[i][j]
+            grid[i][j] = grid[n - j - 1][i]
+            grid[n - j - 1][i] = grid[n - i - 1][n - j - 1]
+            grid[n - i - 1][n - j - 1] = grid[j][n - i - 1]
+            grid[j][n - i - 1] = temp
+
+    print("flipped : " + str(grid))
+
 
 def flip_by_90_in_place(grid):
     # Step 1: Transpose the matrix in place

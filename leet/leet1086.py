@@ -1,7 +1,8 @@
 from collections import defaultdict
 import heapq
 
-def findTop5Averages(items): # O(n) due to default dict append
+# this is the worst since O(n) > O(n log(n))
+def findTop5Averages(items): # O(n*m) due to default dict append
     """
     :param items:
     :return:
@@ -46,7 +47,7 @@ def findTop5Better(items): # O (n log (n)) due to sorted algo and default dict a
     return top_averages
 
 
-# because of heap O (n log (k))
+# because of heap O (n log (k)) # log(k) due to how heap works
 def findTop5Best(items):
     """
     Calculate the average of the top 5 scores for each ID in a faster way.

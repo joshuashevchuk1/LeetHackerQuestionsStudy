@@ -73,3 +73,5 @@ class Solution:
 string ="abacaba"
 print(getMinimumPartitions(string))
 print(getMinimumPartitionsV2(string))
+solution = Solution()
+print(solution.partitionString(string))
