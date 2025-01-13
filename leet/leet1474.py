@@ -3,78 +3,38 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-from requests import delete
+class Solution:
+    def deleteNodes(self, head: Optional[ListNode], m: int, n: int) -> Optional[ListNode]:
+        dn = 0
+        dm = 0
 
-from concepts.linkedListExample import insertNodeAtTail
+        # Function to delete `n` nodes starting from the current node
+        def deleteUntilN(node, dn):
+            count = 0
+            while node and count < n:
+                node = node.next
+                count += 1
+            return node
 
+        # Function to retain `m` nodes and then delete `n` nodes
+        def iterate(node, dm):
+            if not node:
+                return None
 
-# Definition for singly-linked list.
-class ListNode:
-     def __init__(self, val=0, next=None):
-         self.val = val
-         self.next = next
+            # Retain `m` nodes
+            while node and dm < m - 1:
+                node = node.next
+                dm += 1
 
-     def insertAtTail(self, head, data):
+            if not node or not node.next:
+                return None
 
-         new_node = ListNode(data)
+            # Delete `n` nodes
+            node.next = deleteUntilN(node.next, dn)
 
-         current = head
+            # Continue iteration after deleting
+            iterate(node.next, 0)
 
-         while current.next:
-             current = current.next
+        iterate(head, dm)
 
-         current.next = new_node
-
-         return head
-
-     def deleteMatN(self, head ,m,n):
-        dn = 1
-        current = head
-        while current.next:
-            if dn != n:
-                dn += 1
-                current = current.next
-            if dn == n:
-                dn = 1
-                dm = 1
-                current = self.deleteM(current,dm)
-                current = current.next
-
-     def deleteM(self,node,dm):
-         if dm != m:
-             dm += 1
-             if node.next.next is not None:
-                node.next = node.next.next
-             return self.deleteM(node,dm)
-         return node
-
-     def print(self,head):
-        current = head
-        while current.next:
-            print(current.val)
-            current = current.next
-
-
-# deleteM
-
-# node
-
-# node.next = node.next.next
-# node.next = node.next.next.next
-# node.next = node.next.next.next.next
-
-
-
-a = [1,2,3,4,5,6]
-head = ListNode()
-
-for i in range(len(a)):
-    head.insertAtTail(head,a[i])
-
-head.print(head)
-
-m = 2
-n = 2
-head.deleteMatN(head,m,n)
-
-head.print(head)
+        return head
