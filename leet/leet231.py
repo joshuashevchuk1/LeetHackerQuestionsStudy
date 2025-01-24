@@ -1,3 +1,4 @@
+# o log(n)
 class Solution:
     def isPowerOfTwo(self, n: int) -> bool:
         if n == 1:
@@ -5,7 +6,6 @@ class Solution:
 
         i = 1
         while i <= n:
-            print(" i " , i)
             if i == n:
                 return True
             i = i * 2
