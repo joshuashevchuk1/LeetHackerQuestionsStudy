@@ -29,6 +29,18 @@ class BinaryTree:
             else:
                 self._insert(current.right, key)
 
+    def insertBalanced(self,nums,left,right):
+        if left > right:
+            return None
+
+        mid = (left + right) // 2
+        node = Node(nums[mid])
+
+        node.left = self.insertBalanced(nums, left, mid - 1)
+        node.right = self.insertBalanced(nums, mid + 1, right)
+
+        return node
+
     def inOrder_traversal(self, node):
         if node is not None:
             self.inOrder_traversal(node.left)

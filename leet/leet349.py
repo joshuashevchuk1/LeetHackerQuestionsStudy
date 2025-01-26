@@ -1,13 +1,4 @@
 
-def getNewSet():
-    return set()
-
-set = getNewSet()
-
-set.add(1)
-set.pop()
-
-
 # this solution is nearly as fast as the & operator in python but is customizable to include duplicates
 class Solution:
     def intersection(self, nums1: list[int], nums2: list[int]) -> list[int]:
@@ -38,19 +29,3 @@ class Solution:
         set2=set(nums2)
 
         return list(set2 & set1)
-
-# you can also find dup based sets
-
-from collections import Counter
-
-def duppedBased():
-    set1 = [1, 2, 2, 3]
-    set2 = [2, 2, 3, 4]
-
-    # Using Counter to preserve counts
-    counter1 = Counter(set1)
-    counter2 = Counter(set2)
-
-    # Find the intersection with preserved duplicates
-    intersection = counter1 & counter2
-    print(list(intersection.elements()))  # Output: [2, 2, 3]
