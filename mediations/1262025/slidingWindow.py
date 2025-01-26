@@ -14,13 +14,26 @@ nums = [2,3,4,5]
 
 slidingWindowLoop(nums)
 
+# most optimal O(K) sliding window and best usage of python max function
+
+def slidingWind(nums,k):
+    n = len(nums)
+    if n < k:
+        return None
+
+    cs = sum(nums[:k]) # first sum
+    ms = cs
+
+    for i in range(k,n):
+        cs += nums[i] - nums[i - k]
+        ms = max(ms,cs)
+
 
 def slidingWindow(nums, k):
     n = len(nums)
     if n < k:
         return None  # Handle edge case if window size is larger than the array
 
-    max_sum = 0
     current_sum = sum(nums[:k])  # Initialize the window sum with the first k elements
     max_sum = current_sum
 
