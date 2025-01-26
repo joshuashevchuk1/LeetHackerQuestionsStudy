@@ -15,7 +15,7 @@ class Solution:
         return count
 
 
-# o log (n) solution which is better because a binary search is implemented
+# o log (n) solution which is better because a binary search is actually implemented
 class Solution:
     def findFirstNegative(self,arr):
         low=0
