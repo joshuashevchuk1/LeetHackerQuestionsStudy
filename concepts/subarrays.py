@@ -5,6 +5,10 @@ def allSubarrays(nums):
             subarrays.append(nums[i:j+1])  # Slice from i to j
     return subarrays
 
+nums = [1,2,3,3,4]
+subs = allSubarrays(nums)
+print(nums)
+
 def subarraySum(nums, k):
     window_sum = 0
     for i in range(len(nums)):
