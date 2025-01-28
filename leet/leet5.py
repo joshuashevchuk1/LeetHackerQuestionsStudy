@@ -1,34 +1,5 @@
 # old
 
-# class Solution:
-#     def longestPalindrome(self, s: str) -> str:
-#         sl = len(s)
-#
-#         if sl <= 1:
-#             return ""
-#
-#         current_longest = ""
-#         for i in range(sl):
-#             current_palin = getPalin(i, s)
-#             if len(current_palin) > len(current_longest):
-#                 current_longest = current_palin
-#
-#         def getPalin(i, s):
-#             start = i
-#             end = len(s) - 1
-#             palin = ""
-#
-#             while start <= end:
-#                 if s[start] == s[end]:
-#                     palin += s[start]
-#                     start += 1
-#                     end -= 1
-#                 else:
-#                     break
-#
-#             return palin + palin[::-1][(1 if len(palin) > 0 else 0):]
-
-
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         sl = len(s)

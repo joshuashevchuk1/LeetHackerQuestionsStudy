@@ -14,3 +14,21 @@ class Stack:
 
     def min(self):
         return min(self.stack)
+
+# poping a stack with mutliple entries
+
+def popBigStack():
+    stack = []
+    current_string = "a"
+    stack.append((current_string,3))
+    print(stack)
+    current_string += "b"
+    stack.append((current_string,3))
+    print(stack)
+    current_string += "c"
+    stack.append((current_string, 3))
+    print(stack)
+    last_string, multiplier = stack.pop()
+    print(last_string, multiplier)
+
+popBigStack()
