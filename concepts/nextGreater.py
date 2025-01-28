@@ -26,3 +26,22 @@ class Solution:
             stack.append(num)
 
         return [answer.get(num, -1) for num in nums1]
+
+
+# next greater element 2
+class Solution:
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        stack = []
+        n = len(nums)
+        answer = [-1] * n
+
+        for i in range(2 * n):
+            num = nums[i % n]
+            while stack and nums[stack[-1]] < num:
+                index = stack.pop()
+                answer[index] = num
+
+            if i < n:
+                stack.append(i)
+
+        return answer
