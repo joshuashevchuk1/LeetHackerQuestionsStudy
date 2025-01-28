@@ -179,6 +179,8 @@ if __name__ == "__main__":
     tree.preOrderTraveral(tree.root)
     tree.findTreeMaximumDepth(tree.root)
     tree.invertTree(tree.root)
+    result = tree.levelOrder(tree.root)
+    print("result is : " , result)
     print("is balanced?: " , tree.isBalanced(tree.root))
 
     for element in balanced_input:
