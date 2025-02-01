@@ -27,7 +27,7 @@ def getFibTabulation(n):
 
 print(getFibTabulation(5))
 
-
+# computes the longest common subsequence
 def LCSTabulation(text1,text2):
     m,n = len(text1), len(text2)
     dp = [[0] * (n + 1) for _ in range(m + 1)] # dp table
