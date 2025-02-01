@@ -103,10 +103,24 @@ def reverseList(head):
         current = nnext # set current val to the next val
     return prev
 
+
+def reverseList2(head):
+    current = head
+    prev = None
+    while current:
+        nnext = current.next
+        current.next = prev
+        prev = current
+        current = nnext
+
+    return prev
+
 if __name__ == "__main__":
     llist = insertNums(nums)
-    printLinkedList(llist)
-    llist = reverseList(llist)
+    # printLinkedList(llist)
+    # llist = reverseList(llist)
+    # printLinkedList(llist)
+    llist = reverseList2(llist)
     printLinkedList(llist)
 
 
