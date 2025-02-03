@@ -108,3 +108,13 @@ def twoPointerBinarySearch(nums,target):
              r = mid - 1
         if nums[mid] < target:
              l = mid + 1
+
+def twoPointerMiddle(nums):
+    slow = 0
+    fast = 0
+
+    while fast < len(nums) and fast + 1 < len(nums):
+        slow += 1
+        fast += 2
+
+    return nums[slow]
