@@ -4,3 +4,6 @@ class Solution:
         for i in range(0, len(s), 2 * k):
             strList[i:i + k] = reversed(strList[i:i + k])
         return ''.join(strList)
+
+def revsereStr(s):
+    s = s[::-1]
