@@ -15,23 +15,23 @@ def mapPatterns(pattern,s):
                 return False
     return True
 
-def mapPatterns(pattern, s):
-    mapping = {}
-    words = s.split()
 
-    if len(pattern) != len(words):
-        return False
+class Solution:
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        mapping = {}
+        words = s.split()
 
-    for char, word in zip(pattern, words):
-        if char in mapping:
-            if mapping[char] != word:
-                return False
-        else:
-            if word in mapping.values():
-                return False
-            mapping[char] = word
+        if len(pattern) != len(words):
+            return False
 
-    return True
-
+        for char, word in zip(pattern, words):
+            if char in mapping:
+                if mapping[char] != word:
+                    return False
+            else:
+                if word in mapping.values():
+                    return False
+                mapping[char] = word
+        return True
 
 print(mapPatterns(pattern="aba",s="ate bat ate"))
