@@ -49,3 +49,53 @@ def ksum(nums):
         ms = max(ms,cs)
     return ms
 
+# greedy
+
+def coinChange(coins, amount):
+    # Sort coins in descending order for greedy choice
+    coins.sort(reverse=True)
+
+    count = 0
+    for coin in coins:
+        if amount == 0:
+            break
+        # Use as many coins of this denomination as possible
+        count += amount // coin
+        amount %= coin
+
+    # If amount becomes 0, we have found the minimum number of coins
+    return count if amount == 0 else -1  # -1 if it's not possible to make the amount
+
+
+# Example usage
+coins = [1, 5, 10, 25]
+amount = 30
+print(coinChange(coins, amount))  # Output: 2 (1 coin of 25, 1 coin of 5)
+
+# dp
+
+def fibN(n):
+
+    dp = [0] * (n+1)
+    dp[0] = 1
+    dp[1] = 1
+
+    for i in range(2,n):
+        dp[i] = dp[i-1] + dp[i+2]
+
+    return dp[n]
+
+def twoPointerBackForth(nums):
+    l = 0
+    r = len(nums)
+
+    while l < r:
+        l += 1
+        r -= 1
+        if nums[l] == nums[r]:
+          return True
+    return False
+
+def twoPointerBinarySearch(nums,target):
+    l = 0
+    r = len(nums)
