@@ -118,3 +118,4 @@ def twoPointerMiddle(nums):
         fast += 2
 
     return nums[slow]
+
