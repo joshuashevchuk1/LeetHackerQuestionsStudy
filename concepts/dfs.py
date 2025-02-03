@@ -62,7 +62,7 @@ def dfs(node):
 def dfs(grid, i, j):
     if i < 0 or i >= len(grid) or j < 0 or j >= len(grid) or grid[i][j] == "0":
         return
-    dfs[i][j] = "0" # visited marker
+    grid[i][j] = "0" # visited marker
 
     # iteration steps
     dfs([i+1][j],i,j)# right
