@@ -1,5 +1,7 @@
+import heapq
+
 class Solution:
-    def findKthLargest(self, nums: List[int], k: int) -> int:
+    def findKthLargest(self, nums: list[int], k: int) -> int:
         min_heap = []
         l = len(nums)
         for i in range(l):
