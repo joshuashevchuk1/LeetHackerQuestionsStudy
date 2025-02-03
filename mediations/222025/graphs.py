@@ -1,4 +1,5 @@
 from fiona.crs import defaultdict
+from torch.cuda import graph
 
 nums = [(1,2),(2,1),(3,1)]
 
@@ -32,3 +33,51 @@ def dfs():
             if nums[i][j] == 1:  # Found an unvisited land cell
                 dfs(nums, i, j)
                 count += 1  # Increment island count
+
+def graphsRecursiveSearch(nums):
+    def makeGraph(nums):
+        graph = defaultdict(list)
+        for u, v in nums:
+            graph[u].append(v)
+            graph[v].append(u)
+        return graph
+
+    graph = makeGraph(nums)
+
+    visited = set()
+
+    def dfs(node):
+        if node not in visited:
+            visited.add(node)
+            for neighbor in graph[node]:
+                dfs(neighbor)
+
+def hasCycle(nums):
+    def makeGraph(nums):
+        graph = defaultdict(list)
+        for u, v in nums:
+            graph[u].append(v)
+            graph[v].append(u)  # Undirected graph
+        return graph
+
+    graph = makeGraph(nums)
+    visited = set()
+
+    def dfs(node, parent):
+        visited.add(node)
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                if dfs(neighbor, node):  # Recurse with the current node as parent
+                    return True
+            elif neighbor != parent:
+                # Found a back edge (cycle detected)
+                return True
+        return False
+
+    # Check for disconnected components
+    for node in graph:
+        if node not in visited:
+            if dfs(node, -1):  # -1 signifies no parent for the starting node
+                return True
+
+    return False
