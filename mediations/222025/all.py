@@ -99,3 +99,12 @@ def twoPointerBackForth(nums):
 def twoPointerBinarySearch(nums,target):
     l = 0
     r = len(nums)
+
+    while l <= r:
+        mid = (l + r)//2
+        if nums[mid] == target:
+            return mid
+        if nums[mid] > target:
+             r = mid - 1
+        if nums[mid] < target:
+             l = mid + 1
