@@ -11,29 +11,33 @@ import asyncio
 import requests
 import aiohttp
 
-async def getURL(url,filePath):
-    response = requests.get(url)
-    if response.status_code == 200:
-        with open(str(filePath),'wb') as f:
-            f.write(response.content)
-    else:
-        raise Exception("did not get 200 : ", response.status_code)
+def solution():
+    async def getURL(url,filePath):
+        response = requests.get(url)
+        if response.status_code == 200:
+            with open(str(filePath),'wb') as f:
+                f.write(response.content)
+        else:
+            raise Exception("did not get 200 : ", response.status_code)
 
-async def mapURLS(urlList):
-    tasks = []
-    for i in range(len(urlList)):
-        tasks.append(getURL(urlList[i], str(i) + ".jpg"))
-    await asyncio.gather(*tasks)
+    async def mapURLS(urlList):
+        tasks = []
+        for i in range(len(urlList)):
+            tasks.append(getURL(urlList[i], str(i) + ".jpg"))
+        await asyncio.gather(*tasks)
 
-def getUrlList(number):
-    urlList = ["https://www.sample-videos.com/img/Sample-jpg-image-50kb.jpg" for i in range(number)]
-    return urlList
+    def getUrlList(number):
+        urlList = ["https://www.sample-videos.com/img/Sample-jpg-image-50kb.jpg" for i in range(number)]
+        return urlList
 
-number = 5
+    def solve():
+        number = 5
+        urlList = getUrlList(number)
+        asyncio.run(mapURLS(urlList))
 
-urlList = getUrlList(number)
+    solve()
 
-asyncio.run(mapURLS(urlList))
+solution()
 
 # better solution
 
