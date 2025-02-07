@@ -31,13 +31,44 @@ def solution():
         return urlList
 
     def solve():
-        number = 10
+        number = 20
         urlList = getUrlList(number)
         asyncio.run(mapURLS(urlList))
 
     solve()
 
-solution()
+#solution()
+
+# even better solution
+
+from concurrent.futures import ThreadPoolExecutor
+
+def evenBetter(n):
+    def getURL(url, filePath):
+        response = requests.get(url)
+        if response.status_code == 200:
+            with open(str(filePath), 'wb') as f:
+                f.write(response.content)
+        else:
+            raise Exception(f"Failed to download {url}, status code: {response.status_code}")
+
+    def mapURLS(urlList):
+        with ThreadPoolExecutor() as executor:
+            for i in range(len(urlList)):
+                # Submit each download task to the thread pool
+                executor.submit(getURL, urlList[i], str(i) + ".jpg")
+
+    def getUrlList(number):
+        urlList = ["https://www.sample-videos.com/img/Sample-jpg-image-50kb.jpg" for _ in range(number)]
+        return urlList
+
+    def solve(n):
+        urlList = getUrlList(n)
+        mapURLS(urlList)
+
+    solve(n)
+
+evenBetter(40)
 
 # better solution
 
