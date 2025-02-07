@@ -31,7 +31,7 @@ def solution():
         return urlList
 
     def solve():
-        number = 5
+        number = 10
         urlList = getUrlList(number)
         asyncio.run(mapURLS(urlList))
 
