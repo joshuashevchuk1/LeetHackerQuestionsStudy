@@ -1,8 +1,3 @@
-from concurrent.futures.thread import ThreadPoolExecutor
-
-import requests
-
-
 def solve(n):
 
     def getUrl(url,filename):
@@ -36,7 +31,7 @@ import requests
 
 def solveFull(n):
     # Function to fetch data from URL
-    def getUrl(url, filename):
+    def getUrl(url):
         response = requests.get(url)
         if response.status_code == 200:
             return int(response.text)  # Assuming the content is a number in text format
@@ -50,7 +45,7 @@ def solveFull(n):
             futures = []
             # Submit tasks for concurrent download
             for i in range(len(urlList)):
-                future = exec.submit(getUrl, urlList[i], str(i) + ".jpg")
+                future = exec.submit(getUrl, urlList[i])
                 futures.append((future, urlList[i]))  # Keep track of the future and its associated URL
 
             # Collect results from futures
