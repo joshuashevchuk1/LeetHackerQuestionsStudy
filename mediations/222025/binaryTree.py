@@ -3,7 +3,7 @@ from collections import deque
 from django.db.models.expressions import result
 from sympy.physics.units import current
 
-from concepts.queue import queue
+from concepts.queueExample import queue
 
 
 class Node:
