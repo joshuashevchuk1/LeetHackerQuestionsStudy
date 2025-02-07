@@ -8,13 +8,59 @@
 
 
 import asyncio
+import requests
+import aiohttp
 
-async def getURL():
-    return
+async def getURL(url,filePath):
+    response = requests.get(url)
+    if response.status_code == 200:
+        with open(str(filePath),'wb') as f:
+            f.write(response.content)
+    else:
+        raise Exception("did not get 200 : ", response.status_code)
 
 async def mapURLS(urlList):
-    return
+    tasks = []
+    for i in range(len(urlList)):
+        tasks.append(getURL(urlList[i], str(i) + ".jpg"))
+    await asyncio.gather(*tasks)
 
-urlList = ["https://www.sample-videos.com/img/Sample-jpg-image-50kb.jpg" for i in range(5)]
+def getUrlList(number):
+    urlList = ["https://www.sample-videos.com/img/Sample-jpg-image-50kb.jpg" for i in range(number)]
+    return urlList
+
+number = 5
+
+urlList = getUrlList(number)
 
 asyncio.run(mapURLS(urlList))
+
+# better solution
+
+def better():
+
+    async def getURL(url, filePath):
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as response:
+                if response.status == 200:
+                    with open(str(filePath), 'wb') as f:
+                        f.write(await response.read())
+                else:
+                    raise Exception(f"Failed to get {url}, status code: {response.status}")
+
+    async def mapURLS(urlList):
+        tasks = []
+        for i in range(len(urlList)):
+            tasks.append(getURL(urlList[i], str(i) + ".jpg"))
+        await asyncio.gather(*tasks)
+
+    def getUrlList(number):
+        urlList = ["https://www.sample-videos.com/img/Sample-jpg-image-50kb.jpg" for i in range(number)]
+        return urlList
+
+    number = 5
+    urlList = getUrlList(number)
+
+    asyncio.run(mapURLS(urlList))
+
+#better()
