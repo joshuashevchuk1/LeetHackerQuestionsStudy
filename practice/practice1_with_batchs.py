@@ -14,7 +14,7 @@ def concurrentUrlDownload(urls, k):
         else:
             raise Exception(f"Failed: {url} (status code {response.status_code})")
 
-    def cycle(urls, batchSize):
+    def cycle(urls):
         with ThreadPoolExecutor() as executor:
             futures = {executor.submit(getUrl, url): url for url in urls}
 
