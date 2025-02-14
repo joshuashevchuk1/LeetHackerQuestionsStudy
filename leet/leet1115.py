@@ -6,23 +6,23 @@ class FooBar:
         self.n = n
         self.eventA = threading.Event()
         self.eventB = threading.Event()
-
+        self.eventA.set()
 
     def foo(self, printFoo: 'Callable[[], None]') -> None:
-        self.eventA.set()
         for i in range(self.n):
+            self.eventA.wait()
             # printFoo() outputs "foo". Do not change or remove this line.
             printFoo()
-        self.eventA.wait()
+            self.eventA.clear()
+            self.eventB.set()
 
     def bar(self, printBar: 'Callable[[], None]') -> None:
-        self.eventB.set()
         for i in range(self.n):
             # printBar() outputs "bar". Do not change or remove this line.
+            self.eventB.wait()
             printBar()
-        self.eventB.wait()
-        self.eventA.clear()
-        self.eventB.clear()
+            self.eventB.clear()
+            self.eventA.set()
 
 def printFoo():
     print("foo")
@@ -31,4 +31,12 @@ def printBar():
     print("bar")
 
 n = 5
-fooBar = FooBar(5)
+fooBar = FooBar(n)
+
+t1 = threading.Thread(target = fooBar.foo,args = (printFoo,), daemon=True)
+t2 = threading.Thread(target = fooBar.bar,args = (printBar,), daemon=True)
+
+t1.start()
+t2.start()
+t1.join()
+t2.join()
