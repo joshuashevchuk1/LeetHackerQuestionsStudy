@@ -1,7 +1,5 @@
 import threading
 
-from leet.solve_me.leet323 import array
-
 
 # we want to iterate over an array and split the len of the array into pieces
 
