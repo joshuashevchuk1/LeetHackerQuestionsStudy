@@ -15,13 +15,11 @@ def semaphoreExample():
             print("func2", n)
             sem.release()
 
-    n = 5
-    for i in range(n):
-        t1 = threading.Thread(target=func1, args=(1,))
-        t2 = threading.Thread(target=func2, args=(1,))
-        t1.start()
-        t2.start()
-        t1.join()
-        t2.join()
+    t1 = threading.Thread(target=func1, args=(2,))
+    t2 = threading.Thread(target=func2, args=(2,))
+    t1.start()
+    t2.start()
+    t1.join()
+    t2.join()
 
 semaphoreExample()
