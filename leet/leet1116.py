@@ -9,7 +9,7 @@ class ZeroEvenOdd:
 
     # printNumber(x) outputs "x", where x is an integer.
     def zero(self, printNumber: 'Callable[[int], None]') -> None:
-        for i in range (self.n):
+        for i in range (self.n): # alls
             self.zeroS.acquire()
             printNumber(0)
             if isEven(i):
@@ -18,13 +18,13 @@ class ZeroEvenOdd:
                 self.evenS.release()
 
     def even(self, printNumber: 'Callable[[int], None]') -> None:
-        for i in range(2, self.n + 1, 2):
+        for i in range(2, self.n + 1, 2): # evens
            self.evenS.acquire()
            printNumber(i)
            self.zeroS.release()
 
     def odd(self, printNumber: 'Callable[[int], None]') -> None:
-        for i in range(1, self.n + 1, 2):
+        for i in range(1, self.n + 1, 2): # odds
             self.oddS.acquire()
             printNumber(i)
             self.zeroS.release()
