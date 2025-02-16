@@ -2,34 +2,33 @@
 import time
 import multiprocessing
 from matplotlib import pyplot
+from functools import partial
 
 
-def square(x):
-    return x**2
+def square(y,x):
+    return x**y
 
 def solve():
-    list_range = [i for i in range(10**6)]
+    list_range = [i for i in range(10**2)]
     start_time = time.time()
     cpus = multiprocessing.cpu_count()
-    num_cpus = max(1,cpus-1)
+    num_cpus = int(max(1,cpus-1)/2)
+    power_max = 4
 
-    with multiprocessing.Pool(num_cpus) as mp_pool:
-        result = mp_pool.map(square,list_range)
+    for power in range(power_max):
+        partial_function = partial(square,power)
 
-    print("diff:", time.time() - start_time, "seconds")
-    return result,list_range
+        with multiprocessing.Pool(num_cpus) as mp_pool:
+            result = mp_pool.map(partial_function,list_range)
+            pyplot.plot(result, label="power = : " + str(power))
 
-def plot():
-    result,list_range = solve()
-    pyplot.plot(result,label="result")
-    pyplot.plot(list_range,label="list_range")
     pyplot.xlabel('X-axis')
     pyplot.ylabel('Y-axis')
-    pyplot.title('My Plot')
+    pyplot.title('Powers')
     pyplot.legend()
     pyplot.show()
 
 
 if __name__ == "__main__":
     multiprocessing.set_start_method("spawn")
-    plot()
+    solve()
