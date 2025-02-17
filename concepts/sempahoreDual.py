@@ -10,7 +10,11 @@ class SemaphoreDual():
     def hydrogen(self):
         self.semH.acquire()
         print("H")
-        self.semO.release()
+        with self.mutex:
+            self.h_count += 1
+            if self.h_count == 2:
+                self.semO.release()
+                self.h_count = 0
 
     def oxygen(self):
         self.semO.acquire()
