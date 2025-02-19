@@ -23,7 +23,7 @@ async def main():
     for url in urls:
         tasks.append(asyncio.create_task(get_url_response(url)))
 
-    async_text_response = await asyncio.gather(*tasks)
+    async_text_response = await asyncio.gather(*tasks) # * is argument unpacking
     print(async_text_response)
     print("diff : ", time.time() - start_time)
 
