@@ -2,7 +2,7 @@ from urllib.parse import urlparse
 import threading
 
 class Solution:
-    def crawl(self, startUrl: str, htmlParser: 'HtmlParser') -> List[str]:
+    def crawl(self, startUrl: str, htmlParser: 'HtmlParser') -> list[str]:
         host = urlparse(startUrl).netloc
         visited = set()
         mutex = threading.Lock()
