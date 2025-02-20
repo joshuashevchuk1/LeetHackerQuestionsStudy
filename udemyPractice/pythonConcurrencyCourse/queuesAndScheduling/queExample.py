@@ -1,38 +1,51 @@
 import threading
+from queue import Queue
 import requests
 
-class Requestor(threading.Thread):
-    def __init__(self, url , file_name,**kwargs):
-        super(Requestor, self).__init__(**kwargs)
-        self._url = url
-        self.file_name = file_name
-        self.response = None
+class RequestWorker(threading.Thread):
+    mutex = threading.Lock()
+
+    def __init__(self, queue):
+        super(RequestWorker, self).__init__()
+        self._queue = queue
+        self.session = requests.Session()
         self.start()
 
-    def getRequest(self):
-        self.response = requests.get(self._url)
+    def getRequest(self, url):
+        response = self.session.get(url)
+        return response
 
-    def writeResponse(self):
-        if self.response.status_code == 200:
-            with open(str(self.file_name),'wb') as f:
-                f.write(self.response.content)
+    def writeResponse(self, response, file_name):
+        if response and response.status_code == 200:
+            print("Writing:", file_name)
+            with open(file_name, 'wb') as f:
+                f.write(response.content)
 
     def run(self):
-        self.getRequest()
-        self.writeResponse()
+        while True:
+            url, file_name = self._queue.get()
+            if url is None:
+                self._queue.task_done()
+                break
+            response = self.getRequest(url)
+            self.writeResponse(response, file_name)
+            self._queue.task_done()
 
 def getUrlList(number):
-    urlList = ["https://www.sample-videos.com/img/Sample-jpg-image-50kb.jpg" for i in range(number)]
-    return urlList
+    return ["https://www.sample-videos.com/img/Sample-jpg-image-50kb.jpg" for _ in range(number)]
 
 n = 5
 urlList = getUrlList(n)
-print(urlList)
 
-threads = []
+queue = Queue()
+
+num_threads = 3  # Number of worker threads
+for _ in range(num_threads):
+    worker = RequestWorker(queue)
 
 for i in range(len(urlList)):
-    threads.append(Requestor(urlList[i], str(i) + ".jpg"))
+    queue.put((urlList[i], f"{i}.jpg"))
 
-for thread in threads:
-    thread.join()
+queue.join()
+for _ in range(num_threads):
+    queue.put((None, None))
