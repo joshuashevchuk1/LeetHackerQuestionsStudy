@@ -1,7 +1,7 @@
 from collections import deque
 import threading
 
-class BoundedBlockingQueue(object):
+class CustomBoundedBlockingQueue(object):
 
     def __init__(self, capacity: int):
         self.queue = deque([])
