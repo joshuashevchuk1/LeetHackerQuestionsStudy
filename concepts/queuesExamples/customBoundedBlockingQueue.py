@@ -1,5 +1,28 @@
 from collections import deque
 import threading
+import queue
+
+class BoundedBlockingQueueThreadSafe(object):
+
+    def __init__(self, capacity: int):
+        self.queue = queue.Queue()
+        self.capacity = threading.Semaphore(capacity)
+        self.available = threading.Semaphore(0)
+
+    def enqueue(self, element: int) -> None:
+        self.capacity.acquire()
+        self.queue.put(element)
+        self.available.release()
+
+    def dequeue(self) -> int:
+        self.available.acquire()
+        item = self.queue.get()
+        self.capacity.release()
+        return item
+
+    def size(self) -> int:
+        return self.queue.qsize()
+
 
 class CustomBoundedBlockingQueue(object):
 

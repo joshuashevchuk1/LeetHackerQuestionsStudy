@@ -5,6 +5,8 @@ import aiohttp
 
 from collections import defaultdict
 
+from queue import Queue
+
 async def getUrl(session, url):
         async with session.get(url) as response:
             return await response.json()
