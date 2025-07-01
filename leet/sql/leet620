@@ -1,0 +1,9 @@
+# non efficient
+SELECT id, movie, description, rating FROM Cinema
+WHERE description != 'boring' and (id % 2) != 0
+ORDER BY rating desc
+
+# efficient (* "wild-card" is better for cached queries)
+SELECT * FROM Cinema
+WHERE description != 'boring' and (id % 2) != 0
+ORDER BY rating desc
