@@ -3,8 +3,6 @@ from datetime import datetime
 
 class DateValidator:
     def __init__(self, raw_pattern: str = r"\d{4}-\d{2}-\d{2}"):
-        # Escape only if treating as a literal string, not a regex
-        # If you know the string is a real regex, don't use re.escape
         escaped = re.escape(raw_pattern)
         self.pattern = re.compile(escaped)  # Would match literally: \d{4}-\d{2}-\d{2}
         self.regex_check = re.compile(raw_pattern)  # Proper actual regex
@@ -17,3 +15,8 @@ class DateValidator:
             return True
         except ValueError:
             return False
+
+validator = DateValidator()
+print(validator.is_valid("2023-12-25"))
+print(validator.is_valid("2023-02-30"))
+print(validator.is_valid("23-12-25"))
