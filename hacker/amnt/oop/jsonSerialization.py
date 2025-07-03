@@ -11,8 +11,16 @@ class JsonSerializer():
         try:
             json.loads(obj)
             return True
-        except (ValueError, TypeError):
-            return False
+        except Exception:
+            raise InValidJson("Invalid json")
+
+class InValidJson(Exception):
+    def __init__(self, message):
+        super().__init__(message)
+
+    def __str__(self):
+        return f"{self.args[0]}"
+
 
 jsonSerializer = JsonSerializer()
 serialized = jsonSerializer.serialize("test")
@@ -22,3 +30,5 @@ serialized = jsonSerializer.serialize(my_dict)
 print(serialized)
 print(isinstance(serialized, str))  # Output: True
 print(jsonSerializer.is_valid_json(serialized))
+notJson = 1234
+print(jsonSerializer.is_valid_json(notJson))
