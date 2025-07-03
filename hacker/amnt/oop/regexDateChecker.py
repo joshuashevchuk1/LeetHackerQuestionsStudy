@@ -16,7 +16,20 @@ class DateValidator:
         except ValueError:
             return False
 
+data_check = "2023-12-25"
 validator = DateValidator()
 print(validator.is_valid("2023-12-25"))
-print(validator.is_valid("2023-02-30"))
-print(validator.is_valid("23-12-25"))
+
+
+def data_checker(s):
+    raw_pattern = r"\d{4}-\d{2}-\d{2}"
+    pattern = re.compile(raw_pattern)
+    if not pattern.match(s):
+        return False
+    try:
+        datetime.strptime(s, "%Y-%m-%d")
+        return True
+    except ValueError:
+        return False
+
+print(data_checker("2023-12-25"))
