@@ -1,4 +1,4 @@
-from hacker.amnt.dsa1.subsequences import subs_a
+from hacker.amnt.dsa.subsequences import subs_a
 
 a = ['a','b','c','b','d','a','b']
 b = ['b','d','c','a','b','a']
