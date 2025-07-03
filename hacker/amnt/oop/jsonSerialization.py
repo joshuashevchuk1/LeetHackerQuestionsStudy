@@ -12,7 +12,7 @@ class JsonSerializer():
             json.loads(obj)
             return True
         except Exception:
-            raise InValidJson("Invalid json")
+            raise NoSpecialException()
 
 class InValidJson(Exception):
     def __init__(self, message):
@@ -20,6 +20,21 @@ class InValidJson(Exception):
 
     def __str__(self):
         return f"{self.args[0]}"
+
+class MyCustomException(Exception):
+    def __init__(self,message):
+        super().__init__(message)
+
+    def __str__(self):
+        return f"{self.args[0]}"
+
+class NoSpecialException(Exception):
+    def __init__(self):
+        super().__init__()
+
+    def __str__(self):
+        return "NoSpecialException yo yo yo yo"
+
 
 
 jsonSerializer = JsonSerializer()
