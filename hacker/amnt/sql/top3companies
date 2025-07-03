@@ -1,0 +1,13 @@
+SELECT company
+FROM forbes_global_2010_2014
+ORDER BY profits DESC
+LIMIT 3;
+
+SELECT company, profit, rank
+FROM(
+    SELECT
+    company,
+    profits,
+    rank() OVER(ORDER BY profits DESC) AS rank from orbes_global_2010_2014
+    ) x
+WHERE x.rank <= 3

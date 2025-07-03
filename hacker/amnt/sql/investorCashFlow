@@ -1,0 +1,6 @@
+SELECT
+    SUM(IS.Net_Income) - SUM(CFF.Dividends_Paid) + SUM(CFF.Increase_in_Equity) AS Total_Cash_Flow_to_Investors
+FROM
+    Income_Statement IS
+LEFT JOIN
+    CashFlow_Statement_Financing CFF ON IS.Period = CFF.Period;
