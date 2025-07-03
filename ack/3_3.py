@@ -1,4 +1,4 @@
-class Stack:
+class StackTest:
     def __init__(self):
         self.stack = []  # Main stack to hold the elements
         self.min_stack = []  # Auxiliary stack to hold the minimum elements
@@ -33,7 +33,7 @@ class Stack:
 
 
 # Example usage
-stack = Stack()
+stack = StackTest()
 stack.push(3)
 stack.push(1)
 stack.push(5)
