@@ -43,14 +43,31 @@ class Solution:
 
 from collections import Counter
 
-def duppedBased():
-    set1 = [1, 2, 2, 3]
-    set2 = [2, 2, 3, 4]
+def duppedBasedTuple():
+    tuple1 = (1, 2, 2, 3)
+    tuple2 = (2, 2, 3, 4)
 
     # Using Counter to preserve counts
-    counter1 = Counter(set1)
-    counter2 = Counter(set2)
+    counter1 = Counter(tuple1)
+    counter2 = Counter(tuple2)
 
     # Find the intersection with preserved duplicates
     intersection = counter1 & counter2
     print(list(intersection.elements()))  # Output: [2, 2, 3]
+
+
+def duppedBasedSet():
+    tuple1 = {1, 2, 2, 3}
+    tuple2 = {2, 2, 3, 4}
+
+    # Using Counter to preserve counts
+    counter1 = Counter(tuple1)
+    counter2 = Counter(tuple2)
+
+    # Find the intersection with preserved duplicates
+    intersection = counter1 & counter2
+    print(list(intersection.elements()))  # Output: [2, 3]
+
+
+duppedBasedTuple()
+duppedBasedSet()
