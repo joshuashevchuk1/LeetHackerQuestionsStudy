@@ -1,5 +1,5 @@
 class Solution:
-    def shortestDistance(self, wordsDict: List[str], word1: str, word2: str) -> int:
+    def shortestDistance(self, wordsDict: list[str], word1: str, word2: str) -> int:
         i1,i2=-1,-1
         min_distance = float("inf")
         for index, word in enumerate(wordsDict):
