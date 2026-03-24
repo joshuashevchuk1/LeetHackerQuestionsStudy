@@ -9,3 +9,6 @@ sample2 = "test"
 # represented by special designated numbers
 # the most widely used encoding in the word is ascii
 # there are 256 ascii numbers
+# for additional languages, code pages are used.
+
+# for python we can use unicode
