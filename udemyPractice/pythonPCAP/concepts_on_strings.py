@@ -8,3 +8,4 @@ sample2 = "test"
 # enter character and space characters are
 # represented by special designated numbers
 # the most widely used encoding in the word is ascii
+# there are 256 ascii numbers
