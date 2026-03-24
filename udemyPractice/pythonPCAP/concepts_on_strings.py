@@ -12,3 +12,4 @@ sample2 = "test"
 # for additional languages, code pages are used.
 
 # for python we can use unicode
+# unicode stores 4 times the amount of data. That is because characters are 32 bits not 8 bits
