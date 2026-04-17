@@ -21,4 +21,8 @@ class Solution:
                 return i
 
 s = Solution()
-print(Solution.majorityElement2(s,nums=[3,2,3]))
+print(Solution.majorityElement_fast(s,nums=[3,2,3]))
+items = [1,1,2,3]
+print(set(items))
+for i in set(items):
+    print(items.count(i))
